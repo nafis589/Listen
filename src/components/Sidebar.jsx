@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
-import { MdHome, MdSearch, MdAlbum, MdPerson, MdOndemandVideo, MdPlayCircle, MdFolder, MdPhoneIphone } from "react-icons/md";
+import {
+  MdHome,
+  MdSearch,
+  MdAlbum,
+  MdPerson,
+  MdOndemandVideo,
+  MdPlayCircle,
+  MdFolder,
+  MdPhoneIphone,
+} from "react-icons/md";
 
-const Sidebar = () => {
+const Sidebar = ({ onMenuChange }) => {
+  const [activeMenu, setActiveMenu] = useState("Home");
+
   const menuItems = [
-    { icon: <MdHome />, label: "Home", active: true },
+    { icon: <MdHome />, label: "Home" },
     { icon: <MdSearch />, label: "Browse" },
     { icon: <MdAlbum />, label: "Album" },
     { icon: <MdPerson />, label: "Artists" },
@@ -15,6 +26,11 @@ const Sidebar = () => {
     { icon: <MdPlayCircle />, label: "Recently Played" },
     { icon: <MdFolder />, label: "Local Files" },
   ];
+
+  const handleMenuClick = (label) => {
+    setActiveMenu(label);
+    onMenuChange(label);
+  };
 
   return (
     <div className="sidebar">
@@ -34,7 +50,10 @@ const Sidebar = () => {
           {menuItems.map((item, index) => (
             <div
               key={index}
-              className={`menu-item ${item.active ? "active" : ""}`}
+              className={`menu-item ${
+                item.label === activeMenu ? "active" : ""
+              }`}
+              onClick={() => handleMenuClick(item.label)}
             >
               <span className="menu-icon">{item.icon}</span>
               <span className="menu-label">{item.label}</span>
@@ -54,7 +73,9 @@ const Sidebar = () => {
 
         <div className="device-section">
           <div className="device-info">
-            <span className="device-icon"><MdPhoneIphone /></span>
+            <span className="device-icon">
+              <MdPhoneIphone />
+            </span>
             <span>iPhone x</span>
           </div>
         </div>

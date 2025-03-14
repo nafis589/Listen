@@ -1,14 +1,21 @@
-/*import { useState } from "react";*/
 import Sidebar from "./components/Sidebar";
 import TopChart from "./components/TopChart";
-import PlayCard from "./components/PlayCard";
+import Search from "./components/Search";
+import { useState } from "react";
 
 function App() {
+  const [activeMenu, setActiveMenu] = useState("Home");
+
+  const handleMenuChange = (menuLabel) => {
+    setActiveMenu(menuLabel);
+  };
+
   return (
     <div style={{ display: "flex", height: "100vh", background: "#fff" }}>
-      <Sidebar />
+      <Sidebar onMenuChange={handleMenuChange} />
       <main style={{ flex: 1, overflow: "auto" }}>
-        <TopChart />
+        {activeMenu === "Home" ? <TopChart /> : null}
+        {activeMenu === "Browse" ? <Search /> : null}
       </main>
     </div>
   );
