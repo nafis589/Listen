@@ -7,288 +7,168 @@
   margin: 0 auto;
 }
 
-.tabsContainer {
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  justify-content: center;
 }
 
-.tab {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #888;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.tab:hover {
-  background: #000000;
-  color: #fff;
-}
-
-.tab.active {
-  background: #1db954;
-  color: #fff;
-  position: relative;
-  box-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
-  transform: scale(1.05);
-}
-
-.tab.active::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-
-.albumGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.albumCard {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 1;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.albumCard:hover {
-  transform: scale(1.05);
-}
-
-.albumImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-.albumImage:hover {
-  transform: scale(1.05);
-}
-
-.albumOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  color: white;
-}
-
-.albumTitle {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-
-.albumArtist {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin: 0;
-}
-
-.featuredAlbum {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  aspect-ratio: 3/1;
-}
-
-.featuredImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.featuredOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-  color: white;
-}
-
-.featuredTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-
-.featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin: 0;
-}
-
-.albumContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.tabsContainer {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.tab {
-  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
   border: none;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #888;
   cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
   font-size: 1rem;
-  transition: all 0.3s ease;
 }
 
-.tab:hover {
-  background: #000000;
-  color: #fff;
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
 }
 
-.tab.active {
-  background: #1db954;
-  color: #fff;
-  position: relative;
-  box-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
-  transform: scale(1.05);
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
 }
 
-.tab.active::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background-color: #fff;
-  border-radius: 50%;
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
 }
 
-.albumGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.albumCard {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 1;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.albumCard:hover {
-  transform: scale(1.05);
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
-.albumImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.albumImage:hover {
-  transform: scale(1.05);
-}
-
-.albumOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  color: white;
-}
-
-.albumTitle {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-
-.albumArtist {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin: 0;
-}
-
-.featuredAlbum {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  aspect-ratio: 3/1;
-}
-
-.featuredImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.featuredOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-  color: white;
-}
-
-.featuredTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-
-.featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin: 0;
-}
-
-.albumContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -364,6 +244,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -389,16 +295,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -407,7 +323,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -419,9 +335,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -431,6 +376,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -506,6 +615,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -531,16 +666,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -549,7 +694,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -561,9 +706,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -573,6 +747,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -648,6 +986,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -673,16 +1037,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -691,7 +1065,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -703,9 +1077,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -715,6 +1118,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -790,6 +1357,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -815,16 +1408,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -833,7 +1436,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -845,9 +1448,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -857,6 +1489,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -932,6 +1728,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -957,16 +1779,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -975,7 +1807,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -987,9 +1819,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -999,6 +1860,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1074,6 +2099,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1099,16 +2150,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1117,7 +2178,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1129,9 +2190,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1141,6 +2231,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1216,6 +2470,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1241,16 +2521,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1259,7 +2549,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1271,9 +2561,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1283,6 +2602,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1358,6 +2841,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1383,16 +2892,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1401,7 +2920,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1413,9 +2932,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1425,6 +2973,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1500,6 +3212,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1525,16 +3263,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1543,7 +3291,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1555,9 +3303,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1567,6 +3344,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1642,6 +3583,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1667,16 +3634,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1685,7 +3662,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1697,9 +3674,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1709,6 +3715,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1784,6 +3954,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1809,16 +4005,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1827,7 +4033,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1839,9 +4045,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1851,6 +4086,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -1926,6 +4325,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -1951,16 +4376,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -1969,7 +4404,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -1981,9 +4416,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -1993,6 +4457,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2068,6 +4696,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2093,16 +4747,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2111,7 +4775,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2123,9 +4787,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2135,6 +4828,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2210,6 +5067,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2235,16 +5118,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2253,7 +5146,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2265,9 +5158,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2277,6 +5199,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2352,6 +5438,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2377,16 +5489,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2395,7 +5517,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2407,9 +5529,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2419,6 +5570,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2494,6 +5809,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2519,16 +5860,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2537,7 +5888,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2549,9 +5900,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2561,6 +5941,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2636,6 +6180,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2661,16 +6231,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2679,7 +6259,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2691,9 +6271,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2703,6 +6312,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2778,6 +6551,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2803,16 +6602,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2821,7 +6630,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2833,9 +6642,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2845,6 +6683,170 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
@@ -2920,6 +6922,32 @@
   transform: scale(1.05);
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
 .albumOverlay {
   position: absolute;
   bottom: 0;
@@ -2945,16 +6973,26 @@
 
 .featuredAlbum {
   position: relative;
-  border-radius: 16px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 2rem;
-  aspect-ratio: 3/1;
 }
 
-.featuredImage {
+.bannerContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .featuredOverlay {
@@ -2963,7 +7001,7 @@
   left: 0;
   right: 0;
   padding: 2rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }
 
@@ -2975,9 +7013,38 @@
 }
 
 .featuredSubtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
+  font-size: 1.25rem;
   margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
 }
 
 .albumContainer {
@@ -2987,6 +7054,912 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: #000000;
+  color: #fff;
+}
+
+.tab.active {
+  background: #1db954;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+  transform: scale(1.05);
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.albumCard {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.albumCard:hover {
+  transform: scale(1.05);
+}
+
+.albumImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.albumImage:hover {
+  transform: scale(1.05);
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
+.albumOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.albumTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.albumArtist {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.featuredAlbum {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.bannerContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.featuredOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.featuredTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.featuredSubtitle {
+  font-size: 1.25rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
+}
+
+.albumContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: #000000;
+  color: #fff;
+}
+
+.tab.active {
+  background: #1db954;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+  transform: scale(1.05);
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.albumCard {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.albumCard:hover {
+  transform: scale(1.05);
+}
+
+.albumImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.albumImage:hover {
+  transform: scale(1.05);
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff4757;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.4);
+}
+
+.albumOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.albumTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.albumArtist {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.featuredAlbum {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.bannerContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.featuredOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.featuredTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.featuredSubtitle {
+  font-size: 1.25rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activeDot {
+  background: #fff;
+}
+
+.albumContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.errorContent {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.errorTitle {
+  color: #ff4757;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.errorMessage {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.retryButton {
+  background-color: #ff4757;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.retryButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.supportButton {
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.supportButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tabsContainer {
