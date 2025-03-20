@@ -3,7 +3,7 @@ import "./TopChart.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const TopChart = () => {
+const TopChart = ({ onTrackSelect }) => {
   const [song, setSong] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -58,7 +58,12 @@ const TopChart = () => {
       <h2 className="section-title">Billboard Topchart</h2>
       <div className="album-grid">
         {song.map((track) => (
-          <div key={track.id} className="album-card">
+          <div 
+            key={track.id} 
+            className="album-card"
+            onClick={() => onTrackSelect(track)}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="album-cover">
               <img src={track.album.cover_medium} alt={track.album.title} />
               <div className="play-overlay">
