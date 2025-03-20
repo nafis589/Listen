@@ -62,11 +62,6 @@ const Search = () => {
         params: { q: query },
       });
       setSearchResults(response.data.data);
-      if (response.data.data.length > 0) {
-        updateRecentSearches(query, response.data.data[0]);
-      } else {
-        updateRecentSearches(query);
-      }
     } catch (error) {
       setError(`Error searching: ${error.message}`);
     } finally {
@@ -80,6 +75,13 @@ const Search = () => {
     handleSearch(query);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && searchResults.length > 0) {
+      updateRecentSearches(searchQuery, searchResults[0]);
+      handleSearch(searchQuery);
+    }
+  };
+
   return (
     <div className="search-container">
       <div className="search-bar">
@@ -88,6 +90,7 @@ const Search = () => {
           placeholder="What do you want to listen to?"
           value={searchQuery}
           onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
         />
         {recentSearches.length > 0 && (
           <div className="recent-searches">

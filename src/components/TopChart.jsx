@@ -23,12 +23,23 @@ const TopChart = () => {
     fetchData();
   }, []);
 
-  if (loading)
-    return (
-      <div className="top-chart">
-        <h2>Loading...</h2>
+  const LoadingSkeleton = () => (
+    <div className="top-chart">
+      <div className="album-grid">
+        {[...Array(8)].map((_, index) => (
+          <div key={index} className="album-card">
+            <div className="album-cover skeleton-loader">
+              <div className="skeleton-image"></div>
+            </div>
+            <div className="skeleton-text skeleton-title"></div>
+            <div className="skeleton-text skeleton-artist"></div>
+          </div>
+        ))}
       </div>
-    );
+    </div>
+  );
+
+  if (loading) return <LoadingSkeleton />;
   if (error)
     return (
       <div className="top-chart">

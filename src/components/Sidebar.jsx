@@ -34,15 +34,8 @@ const Sidebar = ({ onMenuChange }) => {
 
   return (
     <div className="sidebar">
-      <div className="profile-section">
-        <div className="profile-image">
-          <img src="https://via.placeholder.com/40" alt="Profile" />
-          <span className="online-indicator"></span>
-        </div>
-        <div className="profile-info">
-          <h3>Parzan Paruk</h3>
-          <p>@parzanparuk</p>
-        </div>
+      <div className="app-name">
+        <h1>Listen</h1>
       </div>
 
       <nav className="menu-section">

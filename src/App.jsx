@@ -1,46 +1,50 @@
 import Sidebar from "./components/Sidebar";
 import TopChart from "./components/TopChart";
 import Search from "./components/Search";
+import TopBar from "./components/TopBar";
 import { useState } from "react";
 import Album from "./components/Album";
+import "./App.css";
+import Artists from "./components/Artists";
+import MusicPlayer from "./components/MusicPlayer";
 
 function App() {
   const [activeMenu, setActiveMenu] = useState("Home");
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const [isPlayerVisible, setIsPlayerVisible] = useState(false);
 
   const handleMenuChange = (menuLabel) => {
     setActiveMenu(menuLabel);
   };
 
+  const handleTrackSelect = (track) => {
+    setCurrentTrack(track);
+    setIsPlayerVisible(true);
+  };
+
+  const handleClosePlayer = () => {
+    setIsPlayerVisible(false);
+  };
+
   return (
-    <div style={{ display: "flex", height: "100vh", background: "#fff" }}>
+    <div className="app-container">
       <Sidebar onMenuChange={handleMenuChange} />
-      <main style={{ flex: 1, overflow: "auto" }}>
-        {activeMenu === "Home" ? <TopChart /> : null}
-        {activeMenu === "Browse" ? <Search /> : null}
-        {activeMenu === "Album" ? <Album /> : null}
-      </main>
+      <div className="main-content">
+        <TopBar />
+        <div className="content-area">
+          {activeMenu === "Home" && <TopChart onTrackSelect={handleTrackSelect} />}
+          {activeMenu === "Browse" && <Search onTrackSelect={handleTrackSelect} />}
+          {activeMenu === "Album" && <Album onTrackSelect={handleTrackSelect} />}
+          {activeMenu === "Artists" && <Artists onTrackSelect={handleTrackSelect} />}
+        </div>
+      </div>
+      <MusicPlayer 
+        isVisible={isPlayerVisible}
+        onClose={handleClosePlayer}
+        track={currentTrack}
+      />
     </div>
   );
 }
 
 export default App;
-
-/*function App() {
-  const [search, setSearch] = useState("Eminem");
-
-  return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Lecteur de musique Deezer</h1>
-      <input
-        type="text"
-        placeholder="Rechercher une chanson..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: "8px", marginBottom: "10px" }}
-      />
-      <PlayCard search={search} />
-    </div>
-  );
-}
-
-export default App;*/

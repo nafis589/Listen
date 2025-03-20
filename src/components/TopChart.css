@@ -88,3 +88,53 @@
   color: #666;
   margin: 0;
 }
+
+/* Skeleton Loader Styles */
+.skeleton-loader {
+  background: #e3e3e3;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 100%;
+  background-color: #e3e3e3;
+}
+
+.skeleton-text {
+  height: 16px;
+  background-color: #e3e3e3;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-title {
+  width: 80%;
+}
+
+.skeleton-artist {
+  width: 60%;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
