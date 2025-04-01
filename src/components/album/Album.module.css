@@ -1,0 +1,251 @@
+.albumContainer {
+  padding: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #fff;
+}
+
+.errorContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.errorContent {
+  background: #282828;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.errorIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.errorTitle {
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.errorMessage {
+  color: #b3b3b3;
+  margin-bottom: 1.5rem;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retryButton,
+.supportButton {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.retryButton {
+  background: #1db954;
+  color: #fff;
+}
+
+.supportButton {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  text-decoration: none;
+}
+
+.retryButton:hover,
+.supportButton:hover {
+  transform: scale(1.05);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.featuredAlbum {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.bannerContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerSlide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.featuredOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: #fff;
+}
+
+.featuredTitle {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.featuredSubtitle {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.navigationDots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.activeDot {
+  background: #fff;
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: #fff;
+}
+
+.tab.active {
+  background: #1db954;
+  color: #fff;
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.albumCard {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.albumCard:hover {
+  transform: scale(1.05);
+}
+
+.albumImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.albumOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.albumCard:hover .albumOverlay {
+  opacity: 1;
+}
+
+.playButton {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.albumTitle {
+  color: #fff;
+  margin: 0;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.albumArtist {
+  color: #b3b3b3;
+  margin: 0.5rem 0 0;
+  text-align: center;
+  padding: 0 1rem;
+}
